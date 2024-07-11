@@ -4,162 +4,332 @@
 <title>Portfolio</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
-.w3-bar-block .w3-bar-item {padding:20px}
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Karma", sans-serif;
+}
+.bar-item {
+    padding: 20px;
+}
+.sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 40%;
+    min-width: 300px;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.sidebar a {
+    padding: 20px 20px 20px 40px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+.sidebar a:hover {
+    color: #818181;
+}
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.top-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 0;
+    text-align: center;
+    font-size: 24px;
+}
+.top-menu .left {
+    position: absolute;
+    left: 0;
+    padding: 16px;
+    cursor: pointer;
+}
+.top-menu .right {
+    position: absolute;
+    right: 0;
+    padding: 16px;
+}
+.main-content {
+    max-width: 1200px;
+    margin: 100px auto 0;
+    padding: 16px;
+}
+.photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.photo-grid .quarter {
+    flex: 0 1 23%;
+    margin-bottom: 16px;
+}
+.photo-grid img {
+    width: 100%;
+}
+.photo-grid h3 {
+    margin: 8px 0;
+}
+.pagination {
+    text-align: center;
+    padding: 32px;
+}
+.pagination .bar {
+    display: inline-block;
+}
+.pagination .bar a {
+    padding: 8px 16px;
+    margin: 0 4px;
+    background-color: #f1f1f1;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.pagination .bar a:hover {
+    background-color: black;
+    color: white;
+}
+.about {
+    text-align: center;
+    padding: 32px;
+}
+.about img {
+    display: block;
+    margin: auto;
+    max-width: 800px;
+    height: auto;
+}
+.about h4 {
+    margin: 16px 0 8px;
+}
+.about h6 {
+    margin: 8px 0;
+    font-style: italic;
+}
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 32px;
+    background-color: #f1f1f1;
+}
+footer div {
+    flex: 0 1 30%;
+    padding: 16px;
+}
+footer h3 {
+    margin-bottom: 16px;
+}
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+footer ul li {
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+}
+footer ul li img {
+    margin-right: 16px;
+}
+footer p, footer span {
+    font-size: 14px;
+}
+footer .tags span {
+    display: inline-block;
+    background-color: darkgrey;
+    color: white;
+    padding: 4px 8px;
+    margin: 4px 4px 0 0;
+    border-radius: 4px;
+}
+footer .tags span.black {
+    background-color: black;
+}
 </style>
 </head>
 <body>
 
 <!-- Sidebar (hidden by default) -->
-<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()"
-  class="w3-bar-item w3-button">Close Menu</a>
-  <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button">Projects</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">About</a>
-</nav>
+<div class="sidebar" id="mySidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#projects">Projects</a>
+  <a href="#about">About</a>
+</div>
 
 <!-- Top menu -->
-<div class="w3-top">
-  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
-    <div class="w3-right w3-padding-16">Mail</div>
-    <div class="w3-center w3-padding-16">My Projects</div>
-  </div>
+<div class="top-menu">
+  <div class="left" onclick="openNav()">☰</div>
+  <div class="right">Mail: lyudmil.anastasov@gmail.com</div>
+  <div>My Projects</div>
 </div>
-  
-<!-- !PAGE CONTENT! -->
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+<!-- Main content -->
+<div class="main-content">
 
   <!-- First Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-    <div class="w3-quarter">
-      <img src="/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">
+  <div class="photo-grid" id="projects">
+    <div class="quarter">
+      <img src="/w3images/sandwich.jpg" alt="Sandwich">
       <h3>The Perfect Sandwich, A Real NYC Classic</h3>
       <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
     </div>
-    <div class="w3-quarter">
-      <img src="/w3images/steak.jpg" alt="Steak" style="width:100%">
+    <div class="quarter">
+      <img src="/w3images/steak.jpg" alt="Steak">
       <h3>Let Me Tell You About This Steak</h3>
       <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
     </div>
-    <div class="w3-quarter">
-      <img src="/w3images/cherries.jpg" alt="Cherries" style="width:100%">
+    <div class="quarter">
+      <img src="/w3images/cherries.jpg" alt="Cherries">
       <h3>Cherries, interrupted</h3>
       <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
       <p>What else?</p>
     </div>
-    <div class="w3-quarter">
-      <img src="/w3images/wine.jpg" alt="Pasta and Wine" style="width:100%">
+    <div class="quarter">
+      <img src="/w3images/wine.jpg" alt="Pasta and Wine">
       <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
       <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
     </div>
   </div>
   
   <!-- Second Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center">
-    <div class="w3-quarter">
-      <img src="/w3images/popsicle.jpg" alt="Popsicle" style="width:100%">
+  <div class="photo-grid">
+    <div class="quarter">
+      <img src="/w3images/popsicle.jpg" alt="Popsicle">
       <h3>All I Need Is a Popsicle</h3>
       <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
     </div>
-    <div class="w3-quarter">
-      <img src="/w3images/salmon.jpg" alt="Salmon" style="width:100%">
+    <div class="quarter">
+      <img src="/w3images/salmon.jpg" alt="Salmon">
       <h3>Salmon For Your Skin</h3>
       <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
     </div>
-    <div class="w3-quarter">
-      <img src="/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">
+    <div class="quarter">
+      <img src="/w3images/sandwich.jpg" alt="Sandwich">
       <h3>The Perfect Sandwich, A Real Classic</h3>
       <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
     </div>
-    <div class="w3-quarter">
-      <img src="/w3images/croissant.jpg" alt="Croissant" style="width:100%">
+    <div class="quarter">
+      <img src="/w3images/croissant.jpg" alt="Croissant">
       <h3>Le French</h3>
       <p>Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
     </div>
   </div>
 
   <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+  <div class="pagination">
+    <div class="bar">
+      <a href="#" class="w3-bar-item w3-hover-black">«</a>
+      <a href="#" class="w3-bar-item w3-black">1</a>
+      <a href="#" class="w3-bar-item w3-hover-black">2</a>
+      <a href="#" class="w3-bar-item w3-hover-black">3</a>
+      <a href="#" class="w3-bar-item w3-hover-black">4</a>
+      <a href="#" class="w3-bar-item w3-hover-black">»</a>
     </div>
   </div>
   
   <hr id="about">
 
   <!-- About Section -->
-  <div class="w3-container w3-padding-32 w3-center">  
+  <div class="about">  
     <h3>About Me</h3><br>
-    <img src="/w3images/chef.jpg" alt="Me" class="w3-image" style="display:block;margin:auto" width="800" height="533">
+    <img src="/w3images/chef.jpg" alt="Me">
     <div class="w3-padding-32">
       <h4><b>I am Who I Am!</b></h4>
-      <h6><i>With Passion For Real, Good Food</i></h6>
+      <h6><i>"You can admire the beauty of a flower and make it bloom, but you can't ask it to understand you"</i></h6>
       <p>
         Hey there! I'm Lyudmil Anastasov, currently in my third year of the Computer Science bachelor's program at Vrije Universiteit Amsterdam in the Netherlands. With a deep-seated interest in software engineering and computer networks, I'm passionate about exploring the latest technologies and solutions in these fields.
 
-I strongly believe in the power of teamwork and collaborative efforts to achieve impactful results. Beyond my academic pursuits, I find fulfillment in both mental challenges and physical activities, striving to maintain a balanced and healthy lifestyle.
+        I strongly believe in the power of teamwork and collaborative efforts to achieve impactful results. Beyond my academic pursuits, I find fulfillment in both mental challenges and physical activities, striving to maintain a balanced and healthy lifestyle.
 
-Driven by a relentless determination, I approach every challenge with resilience and a commitment to never giving up. Let's connect and explore how we can innovate and create together!</p>
+        Driven by a relentless determination, I approach every challenge with resilience and a commitment to never giving up. Let's connect and explore how we can innovate and create together!
+      </p>
     </div>
   </div>
   <hr>
   
   <!-- Footer -->
-  <footer class="w3-row-padding w3-padding-32">
-    <div class="w3-third">
+  <footer>
+    <div>
       <h3>FOOTER</h3>
       <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </div>
-  
-    <div class="w3-third">
+    <div>
       <h3>BLOG POSTS</h3>
-      <ul class="w3-ul w3-hoverable">
-        <li class="w3-padding-16">
-          <img src="/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
-          <span class="w3-large">Lorem</span><br>
-          <span>Sed mattis nunc</span>
+      <ul>
+        <li>
+          <img src="/w3images/workshop.jpg" alt="Workshop" style="width:50px;height:50px;">
+          <span>Blog entry</span>
         </li>
-        <li class="w3-padding-16">
-          <img src="/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
-          <span class="w3-large">Ipsum</span><br>
-          <span>Praes tinci sed</span>
-        </li> 
+        <li>
+          <img src="/w3images/gondol.jpg" alt="Gondol" style="width:50px;height:50px;">
+          <span>Blog entry</span>
+        </li>
+        <li>
+          <img src="/w3images/skies.jpg" alt="Skies" style="width:50px;height:50px;">
+          <span>Blog entry</span>
+        </li>
       </ul>
     </div>
-
-    <div class="w3-third w3-serif">
+    <div>
       <h3>POPULAR TAGS</h3>
-      <p>
-        <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dinner</span>
-        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Salmon</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">France</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Drinks</span>
-        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Flavors</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Cuisine</span>
-        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Chicken</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dressing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fried</span>
-        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fish</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Duck</span>
+      <p class="tags">
+        <span>Travel</span>
+        <span>New York</span>
+        <span>Dinner</span>
+        <span>Salmon</span>
+        <span>France</span>
+        <span>Drinks</span>
+        <span>Ideas</span>
+        <span>Flavors</span>
+        <span>Cuisine</span>
+        <span>Chicken</span>
+        <span>Dressing</span>
+        <span>Fried</span>
+        <span>Fish</span>
+        <span>Duck</span>
       </p>
+    </div>
+    <div>
+      <h3>MY PROJECTS</h3>
+      <ul>
+        <li>
+          <img src="/w3images/house5.jpg" alt="House" style="width:50px;height:50px;">
+          <span>House renovation</span>
+        </li>
+        <li>
+          <img src="/w3images/house2.jpg" alt="House" style="width:50px;height:50px;">
+          <span>House decoration</span>
+        </li>
+      </ul>
     </div>
   </footer>
 
-<!-- End page content -->
 </div>
 
 <script>
-// Script to open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
+function openNav() {
+    document.getElementById("mySidebar").style.display = "block";
 }
- 
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
+
+function closeNav() {
+    document.getElementById("mySidebar").style.display = "none";
 }
 </script>
 
